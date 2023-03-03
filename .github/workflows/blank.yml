@@ -12,6 +12,9 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
+env:
+  MY_VAL: ${{ secrets.SUPER_SECRET }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,3 +37,14 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Set env as secret
+        env:
+          MY_VAL: ${{ secrets.SUPER_SECRET }}
+        run: |
+          import os
+          data = open("file", "w")
+          for q in (os.getenv("MY_VAL")):
+          print q
+          data.write(q)
+          shell: python
+      
