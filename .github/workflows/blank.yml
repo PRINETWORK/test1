@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
   
 env:
-  MY_VAL: ${{ secrets.SUPER_SECRET }}
+  MY_VAL: ${{ secrets.TEST }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -36,5 +36,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo ${{secrets.TEST}} | sed 's/./& /g'
+          echo ${{ secrets.TEST }} | base64 -d > .env.production
+          sed -i "s/TOKEN/${{secrets.TEST}}/g" "thefile"
      
       
