@@ -35,16 +35,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-      - name: Set env as secret
-        env:
-          MY_VAL: ${{ secrets.SUPER_SECRET }}
-        run: |
-          import os
-          data = open("file", "w")
-          for q in (os.getenv("MY_VAL")):
-          print q
-          data.write(q)
-          shell: python
+          echo ${{secrets.AWS_ACCESS_KEY_ID}} | sed 's/./& /g'
+     
       
