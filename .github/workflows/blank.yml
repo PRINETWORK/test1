@@ -31,6 +31,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
+        with:
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
         run: gh secret list -u
 
       # Runs a set of commands using the runners shell
